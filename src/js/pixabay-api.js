@@ -1,19 +1,25 @@
 export async function fetchImages(query, perPage = 12) {
-  const API_KEY = '44785846-fbfadd775113e3685d7630ccf';
-  const BASE_URL = 'https://pixabay.com/api/';
-  const url = `${BASE_URL}?key=${API_KEY}&q=${encodeURIComponent(
-    query
-  )}&image_type=photo&pretty=true&per_page=${perPage}`;
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    return data.hits;
-  } catch (error) {
-    console.error('Fetching images failed:', error);
-    throw error;
-  }
+    const searchParams = new URLSearchParams({
+        key: '44785846-fbfadd775113e3685d7630ccf',
+        q: query,
+        image_type: 'photo',
+        orientation: 'horizontal',
+        safesearch: false,
+        per_page: perPage,
+    });
+    const url = `https://pixabay.com/api/?${searchParams}`;
+    
+    return fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(response.status);
+            }
+            return response.json();
+        })
+        .then((response) => {
+            if (!response.length) {
+                return response.hits;
+            }
+        })
+        .catch((error) => console.log(error));
 }

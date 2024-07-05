@@ -49,15 +49,15 @@ export function displayImages(images) {
   }
 }
 
-export function showNoResultsMessage() {
-  iziToast.info({
-    title: 'No results',
-    message: 'No images found for your query',
+export function notFoundMessage() {
+  iziToast.warning({
+    title: 'Not found',
+    message: 'Sorry, there are no images matching search query. Please try again!',
     position: 'topRight',
   });
 }
 
-export function showErrorMessage(error) {
+export function errorMessage(error) {
   iziToast.error({
     title: 'Error',
     message: error.message,

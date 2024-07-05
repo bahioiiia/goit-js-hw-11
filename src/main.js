@@ -4,8 +4,8 @@ import {
   showLoading,
   hideLoading,
   displayImages,
-  showNoResultsMessage,
-  showErrorMessage,
+  notFoundMessage,
+  errorMessage,
 } from './js/render-functions.js';
 
 document.getElementById('searchButton').addEventListener('click', async () => {
@@ -14,7 +14,7 @@ document.getElementById('searchButton').addEventListener('click', async () => {
     return;
   }
 
-  const perPage = 30;
+  const perPage = 6;
 
   clearGallery();
   showLoading();
@@ -24,12 +24,12 @@ document.getElementById('searchButton').addEventListener('click', async () => {
     console.log('Fetched images:', images);
     hideLoading();
     if (images.length === 0) {
-      showNoResultsMessage();
+      notFoundMessage();
     } else {
       displayImages(images);
     }
   } catch (error) {
     hideLoading();
-    showErrorMessage(error);
+    errorMessage(error);
   }
 });
