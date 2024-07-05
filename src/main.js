@@ -1,9 +1,12 @@
-import { fetchImages } from './js/pixabay-api';
+
+import {
+  fetchImages
+} from './js/pixabay-api';
 import {
   clearGallery,
+  displayImages,
   showLoading,
   hideLoading,
-  displayImages,
   notFoundMessage,
   errorMessage,
 } from './js/render-functions.js';
@@ -13,23 +16,20 @@ document.getElementById('searchButton').addEventListener('click', async () => {
   if (query === '') {
     return;
   }
-
-  const perPage = 6;
-
   clearGallery();
   showLoading();
-
+  const perPage = 6;
   try {
     const images = await fetchImages(query, perPage);
     console.log('Fetched images:', images);
-    hideLoading();
     if (images.length === 0) {
       notFoundMessage();
     } else {
       displayImages(images);
     }
-  } catch (error) {
-    hideLoading();
+  } catch (error) {  
     errorMessage(error);
+  } finally {
+    hideLoading();
   }
 });
