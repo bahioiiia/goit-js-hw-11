@@ -14,14 +14,19 @@
     <title>goit-js-hw-10</title>
   </head>
   <body>
-    <a href="./partials/gallery.html" hidden>Gallery</a>
     <header>
       <img src="./img/javascript.svg" alt="" />
       <h1>goit-js-hw-11</h1>
     </header>
     <section>
       <h2>Gallery</h2>
-      <load ="partials/gallery.html" />
+      <input type="text" id="searchInput" placeholder="Search images..." />
+      <button id="searchButton">Search</button>
+      <div class="gallery" id="gallery"></div>
+      <div id="loader" class="loader" style="display: none"></div>
+      <script type="module" src="./main.js"></script>
+      <script type="module" src="./js/pixabay-api.js"></script>
+      <script type="module" src="./js/render-functions.js"></script>
     </section>
   </body>
 </html>
