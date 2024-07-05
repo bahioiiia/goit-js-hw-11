@@ -21,7 +21,6 @@ document.getElementById('searchButton').addEventListener('click', async () => {
   const perPage = 16;
   try {
     const images = await fetchImages(query, perPage);
-    console.log('Fetched images:', images);
     if (images.length === 0) {
       notFoundMessage();
     } else {
