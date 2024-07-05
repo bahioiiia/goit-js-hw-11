@@ -18,7 +18,7 @@ document.getElementById('searchButton').addEventListener('click', async () => {
   }
   clearGallery();
   showLoading();
-  const perPage = 6;
+  const perPage = 16;
   try {
     const images = await fetchImages(query, perPage);
     console.log('Fetched images:', images);
